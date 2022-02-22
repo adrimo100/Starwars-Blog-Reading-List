@@ -3,13 +3,13 @@ import "../../styles/card.css";
 
 const Card = ({ name, uid, resourcePath }) => {
   function getImgSrc() {
-    // The img resource for people is different in the img API
+    // The images' API uses a different name for "people" resource
     const resourceName = resourcePath == "people" ? "characters" : resourcePath;
 
     return `https://starwars-visualguide.com/assets/img/${resourceName}/${uid}.jpg`;
   }
 
-  // Not all images work properly, if they don't work we fall back to a img placeholder
+  // Not all images work, if they don't we fall back to a img placeholder
   function onImgError(event) {
     console.log("Re-setting img");
 
