@@ -20,8 +20,8 @@ const Section = ({ resourcePath, title }) => {
       <h2 className="text-danger mb-3"> {title} </h2>
 
       <div className="d-flex gap-4 cards-container">
-        {resource.map(({ name, url, uid }) => (
-          <Card name={name} url={url} key={uid} />
+        {resource.map((element) => (
+          <Card {...element} resourcePath={resourcePath} key={element.uid} />
         ))}
       </div>
     </section>
