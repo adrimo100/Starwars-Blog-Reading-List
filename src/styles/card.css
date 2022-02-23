@@ -1,0 +1,3 @@
+.card {
+  min-width: max(200px, 20vw);
+}
