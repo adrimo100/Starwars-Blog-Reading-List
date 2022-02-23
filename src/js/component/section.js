@@ -9,7 +9,6 @@ const Section = ({ resourcePath, title }) => {
     fetch(`https://www.swapi.tech/api/${resourcePath}/`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setResource(data.results);
       })
       .catch((err) => console.error(err));
