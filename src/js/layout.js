@@ -7,6 +7,10 @@ import { Demo } from "./views/demo";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 
+import {Character} from "./views/character_template";
+import {Planet} from "./views/planets_template";
+import {Ship} from "./views/ship_template";
+
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 
@@ -25,11 +29,14 @@ const Layout = () => {
 						<Route exact path="/">
 							<Home />
 						</Route>
-						<Route exact path="/demo">
-							<Demo />
+						<Route exact path="/people/:id">
+							<Character/>
 						</Route>
-						<Route exact path="/single/:theid">
-							<Single />
+						<Route exact path="/starships/:id">
+							<Ship/>
+						</Route>
+						<Route exact path="/planets/:id">
+							<Planet/>
 						</Route>
 						<Route>
 							<h1>Not found!</h1>

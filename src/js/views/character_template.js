@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from "react";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 
 import "../../styles/character_template.css"
 
@@ -10,6 +10,8 @@ export const Character = () => {
     const params = useParams();
 
     useEffect(async () => {
+
+        console.log(params.id);
 
         await fetch(`https://www.swapi.tech/api/people/${params.id}`)
         .then(response => {
@@ -36,7 +38,7 @@ export const Character = () => {
                 
                 <div className="col-md-12 col-xl-5 ml-3 text-center mb-4">
 
-                    <img id="characterImg" src={`https://starwars-visualguide.com/assets/img/people/${params.id}.jpg`}/>
+                    <img id="characterImg" src={`https://starwars-visualguide.com/assets/img/characters/${params.id}.jpg`}/>
 
                 </div>
                 <div className="col-md-12 col-xl-6 ml-3 text-center mb-4">
