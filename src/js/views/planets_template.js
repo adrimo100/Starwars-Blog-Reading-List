@@ -1,15 +1,16 @@
 import React, {useState, useEffect} from "react";
-import propTypes from "prop-types";
+import { useParams } from "react-router";
 
 import "../../styles/planets_template.css"
 
-export const Planet = (props) => {
+export const Planet = () => {
 
     const [characterData, setCharacterData] = useState(null);
+    const params = useParams();
 
     useEffect(async () => {
 
-        await fetch(props.planetURL)
+        await fetch(`https://www.swapi.tech/api/planets/${params.id}`)
         .then(response => {
                 if(!response.ok)
                     throw new Error("Error when loading character data")
@@ -26,22 +27,6 @@ export const Planet = (props) => {
             console.log(error);
         });
 
-        await fetch(props.imageURL)
-        .then(response => {
-                if(!response.ok)
-                    throw new Error("Error when loading character image")
-                
-                return response.json();
-        })
-        .then(data =>{
-            console.log(data);
-        })
-        .catch(error => {
-            console.log(error);
-        });
-
-
-
     }, [])
 
     return (
@@ -50,7 +35,7 @@ export const Planet = (props) => {
                 
                 <div className="col-md-12 col-xl-5 ml-3 text-center mb-4">
 
-                    <img id="planetImg" src=""/>
+                    <img id="planetImg" src={`https://starwars-visualguide.com/assets/img/planets/${params.id}.jpg`}/>
 
                 </div>
                 <div className="col-md-12 col-xl-6 ml-3 text-center mb-4">
@@ -93,8 +78,4 @@ export const Planet = (props) => {
 
 }
 
-Planet.propTypes = {
 
-    planetURL: propTypes.string,
-    imageURL: propTypes.string,
-}
