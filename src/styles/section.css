@@ -6,3 +6,7 @@
 .resource:not(:last-child) {
   margin-bottom: 2rem;
 }
+
+.resource-title {
+  text-transform: capitalize;
+}
