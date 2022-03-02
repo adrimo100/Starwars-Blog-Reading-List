@@ -26,8 +26,6 @@ const Card = ({ name, uid, resourceName }) => {
 
   // Not all images work, if they don't we fall back to a img placeholder
   function onImgError(event) {
-    console.log("Re-setting img");
-
     event.currentTarget.src = "https://via.placeholder.com/400x300";
   }
 
