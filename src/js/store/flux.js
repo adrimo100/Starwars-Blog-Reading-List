@@ -9,17 +9,25 @@ const getState = ({ getStore, getActions, setStore }) => {
       favourites: [],
     },
     actions: {
-      addFavourite: (name) => {
-        const favourites = getStore().resources.favourites;
+      switchFavourite: (name) => {
+        const favourites = [...getStore().favourites];
 
-        setStore({ favourites: [...favourites, name] });
+        const favouriteIndex = favourites.indexOf(name);
+
+        if (favouriteIndex < 0) {
+          favourites.push(name);
+        } else {
+          favourites.splice(favouriteIndex, 1);
+        }
+
+        setStore({ favourites });
       },
       removeFavourite: (name) => {
-        const favourites = getStore().resources.favourites;
+        const favourites = [...getStore().favourites];
 
-        setStore({
-          favourites: favourites.filter((elem) => elem.name !== name),
-        });
+        favourites.filter((elem) => elem.name !== name);
+
+        setStore({ favourites });
       },
 
       getAllResources: () => {

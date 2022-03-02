@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/card.css";
+import { Context } from "../store/appContext";
 
 const Card = ({ name, uid, resourceName }) => {
+  const {
+    store: { favourites },
+    actions,
+  } = useContext(Context);
+
+  const isFavourite = favourites.includes(name);
+
+  function handleFavourite(event) {
+    event.preventDefault();
+    actions.switchFavourite(name);
+  }
+
   function getImgSrc() {
     // The images' API uses a different name for "people" resourceName
     const parsedResourceName =
@@ -34,8 +47,12 @@ const Card = ({ name, uid, resourceName }) => {
               Learn More!
             </button>
           </Link>
-          <a href="#" className="btn btn-outline-warning">
-            <i className="bi bi-heart"></i>
+          <a
+            href="#"
+            className={`btn btn-outline-warning ${isFavourite ? "active" : ""}`}
+            onClick={handleFavourite}
+          >
+            <i className={`bi bi-heart${isFavourite ? "-fill" : ""}`}></i>
           </a>
         </nav>
       </div>
