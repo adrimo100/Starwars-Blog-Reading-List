@@ -10,8 +10,8 @@ export const Navbar = () => {
   } = useContext(Context);
 
   return (
-    <nav className="navbar navbar-light bg-light px-4 mb-3">
-      <Link to="/">
+    <nav className="nav navbar-light bg-light px-4 mb-3 sticky-top d-flex align-items-center">
+      <Link to="/" className="flex-grow-1">
         <span className="navbar-brand mb-0 h1">STAR WARS</span>
       </Link>
       <div className="ml-auto">
@@ -38,16 +38,16 @@ export const Navbar = () => {
                 return (
                   <div key={index}>
                     <li>
-                      <div className="d-flex">
+                      <div className="d-flex align-items-center">
                         <Link
                           to={`/${favourite.resource}/${favourite.uid}`}
-                          className="text-black fw-bold"
+                          className="text-black fw-bold flex-grow-1"
                           style={{ textDecoration: "none" }}
                         >
                           {favourite.name}
                         </Link>
                         <button
-                          className="ms-1"
+                          className="ms-1 btn btn-sm btn-outline-danger"
                           onClick={() => actions.switchFavourite(favourite)}
                         >
                           <svg
