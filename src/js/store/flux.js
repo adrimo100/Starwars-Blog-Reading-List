@@ -6,26 +6,22 @@ const getState = ({ getStore, getActions, setStore }) => {
         starships: [],
         planets: [],
       },
-      favourites: [],
+      favourites: [], // [{ resource, uid, name }]
     },
     actions: {
-      switchFavourite: (name) => {
+      switchFavourite: (favourite) => {
         const favourites = [...getStore().favourites];
 
-        const favouriteIndex = favourites.indexOf(name);
+        const favouriteIndex = findFavouriteIndexByName(
+          favourite.name,
+          favourites
+        );
 
         if (favouriteIndex < 0) {
-          favourites.push(name);
+          favourites.push(favourite);
         } else {
           favourites.splice(favouriteIndex, 1);
         }
-
-        setStore({ favourites });
-      },
-      removeFavourite: (name) => {
-        const favourites = [...getStore().favourites];
-
-        favourites.filter((elem) => elem.name !== name);
 
         setStore({ favourites });
       },
@@ -50,3 +46,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 };
 
 export default getState;
+
+export const findFavouriteIndexByName = (name, favourites) =>
+  favourites.findIndex((elem) => elem.name == name);
