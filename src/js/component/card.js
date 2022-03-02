@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/card.css";
 import { Context } from "../store/appContext";
+import { findFavouriteIndexByName } from "../store/flux";
 
 const Card = ({ name, uid, resourceName }) => {
   const {
@@ -9,11 +10,12 @@ const Card = ({ name, uid, resourceName }) => {
     actions,
   } = useContext(Context);
 
-  const isFavourite = favourites.includes(name);
+  const isFavourite = findFavouriteIndexByName(name, favourites) >= 0;
 
   function handleFavourite(event) {
     event.preventDefault();
-    actions.switchFavourite(name);
+    actions.switchFavourite({ name, uid, resource: resourceName });
+    console.log(favourites);
   }
 
   function getImgSrc() {

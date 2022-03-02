@@ -5,7 +5,7 @@ import { Context } from "../store/appContext";
 
 export const Navbar = () => {
   const {
-    store: { favourites, resources },
+    store: { favourites },
     actions,
   } = useContext(Context);
 
@@ -34,21 +34,21 @@ export const Navbar = () => {
                 <hr className="dropdown-divider" />
               </li>
 
-              {favourites.map((item, index) => {
+              {favourites.map((favourite, index) => {
                 return (
                   <div key={index}>
                     <li>
                       <div className="d-flex">
                         <Link
-                          to="/person/1"
+                          to={`/${favourite.resource}/${favourite.uid}`}
                           className="text-black fw-bold"
                           style={{ textDecoration: "none" }}
                         >
-                          {item}
+                          {favourite.name}
                         </Link>
                         <button
                           className="ms-1"
-                          onClick={() => actions.removeFavourite(item)}
+                          onClick={() => actions.switchFavourite(favourite)}
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
